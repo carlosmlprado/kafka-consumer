@@ -2,14 +2,12 @@ package com.study.kafka.entity;
 
 import com.study.kafka.dto.UserDTO;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -38,18 +36,13 @@ public class User {
     @Column(name = "login_attempt")
     private Integer loginAttempt;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Builder.Default
-    private List<String> roles = new ArrayList<>();
-
     public User toEntity(UserDTO userDTO) {
 
         return User.builder().name(userDTO.getName()).
                 password(userDTO.getPassword()).
                 email(userDTO.getEmail()).
                 status(userDTO.getStatus()).
-                loginAttempt(userDTO.getLoginAttempt()).
-                roles(userDTO.getRoles()).build();
+                loginAttempt(userDTO.getLoginAttempt()).build();
     }
 
 }

@@ -22,7 +22,6 @@ public class UserDTO {
     private String email;
     private Character status;
     private Integer loginAttempt;
-    private List<String> roles = new ArrayList<>();
 
     public UserDTO toDto(User user) {
 
@@ -30,8 +29,7 @@ public class UserDTO {
                 password(user.getPassword()).
                 email(user.getEmail()).
                 status(user.getStatus()).
-                loginAttempt(user.getLoginAttempt()).
-                roles(user.getRoles())
+                loginAttempt(user.getLoginAttempt())
                 .build();
     }
 
